@@ -1,4 +1,4 @@
-// Shorthand for SELETE AJAX requests.
+// Shorthand for DELETE AJAX requests.
 $.delete = function (url) {
 	return $.ajax({
 		url: url,
