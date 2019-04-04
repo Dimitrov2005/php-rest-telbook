@@ -1,7 +1,7 @@
 // All these function render piece of HTML to plug into the DOM tree.
 // The HTML can be plugged using $('#id').html(new_html);
 
-function render_persons(persons) {
+function render_authors(authors) {
 	var html = "<tr>"+
 			"<th>ID</th>"+
 			"<th>Name</th>"+
@@ -9,17 +9,17 @@ function render_persons(persons) {
 			"<th></th>"+
 		"</tr>";
 
-	for(var i=0; i<persons.length; i++) {
-		var p = persons[i];
+	for(var i=0; i<authors.length; i++) {
+		var p = authors[i];
 		html += "<tr>" +
 			"<td>" + p.id + "</td>" +
-			"<td><a href='#' data-person-id='" + p.id + "' class='person-telephones'>" +
-				html_escape(p.fname + " " + p.lname) +
+			"<td><a href='#' data-authors-id='" + p.id + "' class='authors-books'>" +
+				html_escape(p.name + " " + p.age) +
 			"</a></td>"+
-			"<td>" + html_escape(p.address) + "</td>" +
+			"<td>" + html_escape(p.country_id) + "</td>" +
 			"<td>" +
-				"<a href='#' data-person-id='" + p.id + "' class='edit_icon person-edit'>Edit</a> " +
-				"<a href='#' data-person-id='" + p.id + "' class='delete_icon person-delete'>Delete</a>" +
+				"<a href='#' data-authors-id='" + p.id + "' class='edit_icon authors-edit'>Edit</a> " +
+				"<a href='#' data-authors-id='" + p.id + "' class='delete_icon authors-delete'>Delete</a>" +
 			"</td>" +
 		"</tr>";
 	}
@@ -47,12 +47,12 @@ function render_person_form(person) {
 }
 
 // TELEPHONES
-function render_telephones(person, telephones) {	
+/*function render_telephones(authors, books) {	
 	var html = '';
 	
 	html += "<p class='user_icon'>"+
-			"<b>" + html_escape(person.fname + " " + person.lname) + "</b>, "+ 
-			html_escape(person.address) + 
+			"<b>" + html_escape(authors.name + " " + authors.age) + "</b>, "+ 
+			html_escape(authors.age) + 
 		"</p>";
 	
 	html += "<table class='grid'>";
@@ -62,9 +62,9 @@ function render_telephones(person, telephones) {
 		"<th>Type</th>"+
 		"<th></th>"+
 	"</tr>";
-	for(var i=0; i<telephones.length; i++) {
-		var tel = telephones[i];
-		var teltype = get_teltype(tel.teltype_id);
+	for(var i=0; i<books.length; i++) {
+		var tel = books[i];
+		var country_id = get_teltype(tel.teltype_id);
 		html += "<tr>"+
 			"<td>" + tel.id + "</td>" +
 			"<td>" + html_escape(tel.number) + "</td>" +
@@ -84,7 +84,7 @@ function render_telephones(person, telephones) {
 
 	return html;
 }
-
+*/
 function render_telephone_form(telephone) {
 	if(!telephone) return 'Empty telephone.';
 	

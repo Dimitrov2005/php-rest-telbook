@@ -1,18 +1,18 @@
 <?php
 
 // Route URL paths
-if($request->get('persons')) {
-	$response->persons = $db->querybind_all('SELECT * FROM persons ORDER BY id');
+if($request->get('authors')) {
+	$response->authors = $db->querybind_all('SELECT * FROM authors ORDER BY id');
 }
-else if($request->get('persons/[0-9]+')) {
+else if($request->get('authors/[0-9]+')) {
 	$person_id = (int) $request->segment(1);
-	$response->person = $db->querybind_one('SELECT * FROM persons WHERE id = ?', [ $person_id ]);
-	if(!$response->person) {
+	$response->authors = $db->querybind_one('SELECT * FROM authors WHERE id = ?', [ $person_id ]);
+	if(!$response->authors) {
 		$response->code(404);
 		$response->error('404: Person Not Found.');
 	}
 }
-else if($request->post('persons/[0-9]+') || $request->post('persons')) {
+else if($request->post('authors/[0-9]+') || $request->post('persons')) {
 	$person_id = (int) $request->segment(1, 0);
 	$person = $request->data;
 	if($person) {	
