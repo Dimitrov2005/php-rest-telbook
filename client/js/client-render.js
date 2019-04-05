@@ -5,7 +5,7 @@ function render_authors(authors) {
 	var html = "<tr>"+
 			"<th>ID</th>"+
 			"<th>Name</th>"+
-			"<th>Address</th>"+
+			"<th>Country</th>"+
 			"<th></th>"+
 		"</tr>";
 
@@ -13,10 +13,10 @@ function render_authors(authors) {
 		var p = authors[i];
 		html += "<tr>" +
 			"<td>" + p.id + "</td>" +
-			"<td><a href='#' data-authors-id='" + p.id + "' class='authors-books'>" +
-				html_escape(p.name + " " + p.age) +
+			"<td><a href='#' data-authors-id='" + p.id + "' class='authors-countries'>" +
+				html_escape(p.name) +
 			"</a></td>"+
-			"<td>" + html_escape(p.country_id) + "</td>" +
+			"<td>" + html_escape(p.name) + "</td>" +
 			"<td>" +
 				"<a href='#' data-authors-id='" + p.id + "' class='edit_icon authors-edit'>Edit</a> " +
 				"<a href='#' data-authors-id='" + p.id + "' class='delete_icon authors-delete'>Delete</a>" +

@@ -2,8 +2,13 @@
 
 // Route URL paths
 if($request->get('authors')) {
-	$response->authors = $db->querybind_all('SELECT * FROM authors ORDER BY id');
+	$response->authors = $db->querybind_all('SELECT authors.id, authors.name, countries.name FROM AUTHORS INNER JOIN countries on countries.id = authors.country_id Order by id');
 }
+/*\
+Problem for task 1 : 
+If we join the tables , how to display countries.name column where
+there is the same column name in authors. ? 
+*/
 else if($request->get('authors/[0-9]+')) {
 	$person_id = (int) $request->segment(1);
 	$response->authors = $db->querybind_one('SELECT * FROM authors WHERE id = ?', [ $person_id ]);
