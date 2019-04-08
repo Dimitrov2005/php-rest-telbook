@@ -13,7 +13,7 @@ function render_authors(authors) {
 		var p = authors[i];
 		html += "<tr>" +
 			"<td>" + p.id + "</td>" +
-			"<td><a href='#' data-authors-id='" + p.id + "' class='authors-countries'>" +
+			"<td><a href='#' data-authors-id='" + p.id + "' class='author-books'>" +
 				html_escape(p.name) +
 			"</a></td>"+
 			"<td>" + html_escape(p.name) + "</td>" +
@@ -46,45 +46,54 @@ function render_person_form(person) {
 	return html;
 }
 
-// TELEPHONES
-/*function render_telephones(authors, books) {	
+// books
+function render_books(author, books) {	
 	var html = '';
-	
-	html += "<p class='user_icon'>"+
-			"<b>" + html_escape(authors.name + " " + authors.age) + "</b>, "+ 
-			html_escape(authors.age) + 
+	var author_books_int = 0;
+
+	for(var i=0; i<books.length; i++) {
+		var book = books[i];
+		if (book.author_id == author.id){
+			author_books_int += 1; 
+		}
+	}
+	console.log("DEBUG : Number of books of"+author.name+"is"+ author_books_int);
+	// Task 2 add : here is formed the name and books number
+	html += "<p class='user_icon'>"+ // wtf is this an icon :D
+			"<b>" + html_escape(author.name) + "</b>, "+ 
+			html_escape(author_books_int) + 
 		"</p>";
 	
 	html += "<table class='grid'>";
 	html += "<tr>"+
 		"<th>ID</td>"+
-		"<th>Number</th>"+
-		"<th>Type</th>"+
+		"<th>Title</th>"+
+		"<th>Pages</th>"+
 		"<th></th>"+
 	"</tr>";
 	for(var i=0; i<books.length; i++) {
-		var tel = books[i];
-		var country_id = get_teltype(tel.teltype_id);
+		var book = books[i];
 		html += "<tr>"+
-			"<td>" + tel.id + "</td>" +
-			"<td>" + html_escape(tel.number) + "</td>" +
-			"<td>" + html_escape(teltype.name) + "</td>" +
+			"<td>" + book.id + "</td>" +
+			"<td>" + html_escape(book.title) + "</td>" +
+			"<td>" + html_escape(book.pages) + "</td>" +
 			"<td>" +
-				"<a href='#' data-person-id='" + person.id + "' data-telephone-id='" + tel.id + "' class='edit_icon telephone-edit'>Edit</a> " +
-				"<a href='#' data-person-id='" + person.id + "' data-telephone-id='" + tel.id + "' class='delete_icon telephone-delete'>Delete</a>" +
+				"<a href='#' data-authors-id='" + author.id + "' data-books-id='" + book.id + "' class='edit_icon book-edit'>Edit</a> " +
+				"<a href='#' data-authors-id='" + author.id + "' data-books-id='" + book.id + "' class='delete_icon book-delete'>Delete</a>" +
 			"</td>"+
 		"</tr>";
 	}
 	html += "</table>";
 	
 	html += "<p>" +
-		"<a href='#' data-person-id='" + person.id + "' class='add_icon telephone-add'>Add New Telephone</a> " +
-		"<a href='#' data-person-id='" + person.id + "' class='refresh_icon telephones-refresh'>Refresh</a>" +
+		"<a href='#' data-author-id='" + author.id + "' class='add_icon book-add'>Add New Telephone</a> " +
+		"<a href='#' data-author-id='" + author.id + "' class='refresh_icon book-refresh'>Refresh</a>" +
 		"</p>";
 
 	return html;
 }
-*/
+
+
 function render_telephone_form(telephone) {
 	if(!telephone) return 'Empty telephone.';
 	

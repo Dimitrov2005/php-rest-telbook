@@ -11,9 +11,9 @@ function reload_authors() {
 	});
 }
 
-function reload_books(authors_id) {
-	$.get('authors/' + authors_id + '/books').done(function(data) {
-		$('#books').html(render_books(data.authors, data.books));
+function reload_books(author_id) {
+	$.get('authors/' + author_id + '/books').done(function(data) {
+		$('#books').html(render_books(data.author, data.books));
 		$('#books-messages').html(render_messages(data.messages));
 	}).fail(function(response) {
 		var data = response.responseJSON;
@@ -86,13 +86,16 @@ $(document).ready(function() {
 
 
 	// BOOKS
-	$(document).on('click', 'a.author-books, a.authors-refresh', function() {
+	// Task _ 2  // whenever there is a click on the link 
+	$(document).on('click', 'a.author-books, a.books-refresh', function() {
 		var author_id = $(this).attr('data-authors-id');
-		reload_books(author_id);
+		reload_books(author_id);  // call the function with the argument id
 		$('#books-edit').html('');
 		$('#books-messages').html('');
 		return false;
 	});
+	// Task _ 2 
+
 
 	$(document).on('click', 'a.books-delete', function() {
 		var book_id = $(this).attr('data-book-id');

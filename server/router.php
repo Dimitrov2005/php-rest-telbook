@@ -17,6 +17,7 @@ else if($request->get('authors/[0-9]+')) {
 		$response->error('404: Person Not Found.');
 	}
 }
+
 else if($request->post('authors/[0-9]+') || $request->post('persons')) {
 	$person_id = (int) $request->segment(1, 0);
 	$person = $request->data;
@@ -57,18 +58,22 @@ else if($request->delete('persons/[0-9]+')) {
 	$db->querybind('DELETE FROM persons WHERE id = ?', [$person_id] );
 	$response->info("Person id=$person_id and its telephones deleted.");
 }
-else if($request->get('persons/[0-9]+/telephones')) {
-	$person_id = (int) $request->segment(1);
-	$response->person = $db->querybind_one('SELECT * FROM persons WHERE id = ?', [$person_id] );
-	$response->telephones = [];
-	if($response->person) {
-		$response->telephones = $db->querybind_all('SELECT * FROM telephones WHERE person_id = ?', [$person_id] );
+
+//Task 2 begin : 
+else if($request->get('authors/[0-9]+/books')) {
+	$author_id = (int) $request->segment(1);
+	$response->author = $db->querybind_one('SELECT * FROM authors WHERE id = ?', [$author_id] );
+	$response->books = [];
+	if($response->author) {
+		$response->books = $db->querybind_all('SELECT * FROM books WHERE author_id = ?', [$author_id] );
 	}
 	else {
 		$response->code(404);
-		$response->error("404: Person id=$person_id not found.");
+		$response->error("404: Author with id=$author_id not found.");
 	}
 }
+// Task 2 end 
+
 else if($request->get('telephones/[0-9]+')) {
 	$telephone_id = (int) $request->segment(1);
 	$response->telephone = $db->querybind_one('SELECT * FROM telephones WHERE id = ?', [ $telephone_id ]);
