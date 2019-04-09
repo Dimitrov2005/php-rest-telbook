@@ -46,7 +46,7 @@ $(document).ready(function() {
 		$('#authors-messages').html('');
 		return false;
 	});
-
+// Task_4 edit
 	$(document).on('click', 'a.authors-edit', function() {
 		var authors_id = $(this).attr('data-authors-id');
 		$.get('authors/'+author_id).done(function(data) {
@@ -71,6 +71,7 @@ $(document).ready(function() {
 		});
 		return false;
 	});
+// Task_4 edit
 
 // Task_3 add 
 	$(document).on('click', 'a.authors-delete', function() {

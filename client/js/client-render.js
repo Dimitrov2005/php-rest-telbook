@@ -28,23 +28,25 @@ function render_authors(authors) {
 	return html;
 }
 
-function render_person_form(person) {
-	if(!person) return 'Empty person.';
+// task_4 edit
+function render_author_form(author) {
+	if(!author) return 'Empty author.';
 	
-	var html = '';
-	var title = (person.id) ? 'Edit Person' : 'Add Person';
+	var html = ''
+	var title = (author.id) ? 'Edit Person' : 'Add Person'; //decide what ? 
 	
 	html += "<h1>" + title + "</h1>";
 	html += "<form action='#' method='post'>";
-	html += "<p><label>ID</label><input name='id' value='" + html_escape(person.id) + "' readonly='readonly' /></p>";
-	html += "<p><label>First Name</label><input name='fname' value='" + html_escape(person.fname) + "'/></p>";
-	html += "<p><label>Last Name</label><input name='lname' value='" + html_escape(person.lname) + "'/></p>";
-	html += "<p><label>Address</label><input name='address' value='" + html_escape(person.address) + "'/></p>";
+	html += "<p><label>ID</label><input name='id' value='" + html_escape(author.id) + "' readonly='readonly' /></p>";
+	html += "<p><label>Name</label><input name='name' value='" + html_escape(author.name) + "'/></p>";
+	html += "<p><label>Age</label><input name='age' value='" + html_escape(author.age) + "'/></p>";
+	html += "<p><label>Country(ID)</label><input name='country_id' value='" + html_escape(author.country_id) + "'/></p>";
 	html += "<p><button>Save</button></p>";
 	html += "</form>";
 	
 	return html;
 }
+// task_4 edit
 
 // books
 function render_books(author, books) {	
