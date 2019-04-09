@@ -72,8 +72,9 @@ $(document).ready(function() {
 		return false;
 	});
 
+// Task_3 add 
 	$(document).on('click', 'a.authors-delete', function() {
-		var author_id = $(this).attr('data-author-id');
+		var author_id = $(this).attr('data-authors-id');
 		$.delete('authors/' + author_id).done(function(data) {
 			reload_authors();
 			$('#authors-messages').html(render_messages(data.messages));
@@ -83,7 +84,7 @@ $(document).ready(function() {
 		});
 		return false;
 	});
-
+// Task_3
 
 	// BOOKS
 	// Task _ 2  // whenever there is a click on the link 
@@ -96,15 +97,16 @@ $(document).ready(function() {
 	});
 	// Task _ 2 
 
-
-	$(document).on('click', 'a.books-delete', function() {
-		var book_id = $(this).attr('data-book-id');
+// task_3 pt2 
+	$(document).on('click', 'a.book-delete', function() {
+		var book_id = $(this).attr('data-books-id');
 		var author_id = $(this).attr('data-authors-id');
 		$.delete('books/' + book_id).done(function(data) {
 			reload_books(author_id);
 		});
 		return false;
 	});
+//task_3 pt2
 
 	$(document).on('click', 'a.books-edit', function() {
 		var book_id = $(this).attr('data-books-id');
@@ -125,7 +127,7 @@ $(document).ready(function() {
 		$('#telephone-messages').html('');
 		return false;
 	});
-*/
+*/ 
 	$(document).on('submit', '#books-edit > form', function() {
 		var book = $(this).serializeObject();
 		$.postJSON('books/' + boos.id, book).done(function(data) {

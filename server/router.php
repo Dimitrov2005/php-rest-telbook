@@ -52,12 +52,14 @@ else if($request->post('authors/[0-9]+') || $request->post('persons')) {
 		$response->info('Person saved.');	
 	}
 }
-else if($request->delete('persons/[0-9]+')) {
-	$person_id = (int) $request->segment(1);
-	$db->querybind('DELETE FROM telephones WHERE person_id = ?', [$person_id] );
-	$db->querybind('DELETE FROM persons WHERE id = ?', [$person_id] );
-	$response->info("Person id=$person_id and its telephones deleted.");
+// Task 3  begin add : 
+else if($request->delete('authors/[0-9]+')) {
+	$author_id = (int) $request->segment(1);
+	$db->querybind('DELETE FROM books WHERE author_id = ?', [$author_id] );
+	$db->querybind('DELETE FROM authors WHERE id = ?', [$author_id] );
+	$response->info("Author id=$person_id and its book entries deleted.");
 }
+// task 3 end 
 
 //Task 2 begin : 
 else if($request->get('authors/[0-9]+/books')) {
@@ -114,11 +116,16 @@ else if($request->post('telephones/[0-9]+') || $request->post('telephones')) {
 		$response->info('Telephone saved.');	
 	}
 }
-else if($request->delete('telephones/[0-9]+')) {
-	$telephone_id = (int) $request->segment(1);
-	$db->querybind('DELETE FROM telephones WHERE id = ?', [$telephone_id] );
-	$response->info("Telephone id=$telephone_id deleted.");
+
+//task_3 pt 2
+else if($request->delete('books/[0-9]+')) {
+	$book_id = (int) $request->segment(1);
+	$db->querybind('DELETE FROM books WHERE id = ?', [$book_id] );
+	$response->info("Book with id=$book_id deleted.");
 }
+// task_3 pt 2
+
+
 else if($request->get('teltypes')) {
 	$response->teltypes = $db->querybind_all('SELECT * FROM teltypes ORDER BY id');
 }
